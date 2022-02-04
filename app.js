@@ -57,6 +57,25 @@ addFriendButton.addEventListener('click', () => {
     displayFriends();
 });
 
+function eatMushroom(friend) {
+    friendsEl.innerHTML = '';
+
+    if (friend.satisfaction < 3) { 
+        friend.satisfaction++; 
+        mushroomCount--;
+    } 
+    
+    if (mushroomCount === 0) {
+        alert('no more mushrooms!');       
+    } else if (mushroomCount < 0) {
+        mushroomCount = 0;
+    }
+
+    console.log('ate', friend, mushroomCount);
+    displayFriends();
+    displayMushrooms();
+}
+
 function displayFriends() {
     // clear out the friends in DOM
     friendsEl.innerHTML = '';
@@ -70,7 +89,7 @@ function displayFriends() {
         //             increment the friends satisfaction and decrement your mushrooms
         //             then display your friends and mushrooms with the updated state
         friendEl.addEventListener('click', () => {
-            //eatMushroom(friend);
+            eatMushroom(friend);
             console.log('clicked', friend);
         });
         // append the friendEl to the friends list in DOM
@@ -80,9 +99,11 @@ function displayFriends() {
 
 function displayMushrooms() {
     // clear out the mushroom div
-
+    mushroomsEl.innerHTML = '';
     for (let i = 0; i < mushroomCount; i++) {
         // for each mushroom in your mushroom state, render and append a mushroom
+        let mushroom = renderMushroom(i);
+        mushroomsEl.append(mushroom);
     }
 }
 
