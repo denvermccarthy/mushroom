@@ -60,7 +60,7 @@ addFriendButton.addEventListener('click', () => {
 function eatMushroom(friend) {
     friendsEl.innerHTML = '';
 
-    if (friend.satisfaction < 3) { 
+    if (friend.satisfaction < 3 && mushroomCount > 0) { 
         friend.satisfaction++; 
         mushroomCount--;
     } 
